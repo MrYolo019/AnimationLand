@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat&family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body{
             margin: 0;
@@ -12,6 +15,24 @@
             width: 100%;
             display: grid;
             place-items: center;
+            counter-reset: score; 
+        }
+        h1{
+            position: absolute;
+            left: 50px;
+            margin: 0 auto;
+            top: 20px;
+            color: #7e4f3d;
+            font-family: 'Caveat';
+            font-size: 40px;
+        }
+        h3{
+            position: absolute;
+            left: 120px;
+            margin: 0 auto;
+            top: 60px;
+            font-family: 'Caveat';
+            font-size: 25px;
         }
         .phone{
             position: relative;
@@ -19,50 +40,84 @@
             border-radius: 40px;
             height: 600px;
             width: 300px;
-            background: #CCEFFF;
+            background: #b0faff;
             box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 
         }
         .layer {
             position: absolute;
         }
-        .layer-1{
+        .layer-1{ /*Fondo del muneco*/
             z-index: 1;
-            height: 450px;
+            height: 0px;
             width: 80px;
-            background: white;
-            bottom: 0;
+            background: papayawhip;
+            top: 100px;
             right: 60px;
             border-top-left-radius: 40px;
             border-top-right-radius: 40px;
             box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
+            animation-name: layer;
+            animation-duration: 1s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
         }
-        .layer-2{
-            z-index: 2;
-            height: 450px;
+        @keyframes layer{
+            0%{
+                top: 100px;
+            }
+            25%{
+                top: 200px ;
+            }
+            100%{
+                top: 100px;
+            }
+        }
+        input{
+            appearance: none;
+            cursor: pointer;
+            height: 50px;
+            margin: 0;
+            position: relative;
+            top: 0;
             width: 80px;
-            background: white;
-            bottom: 0;
+        }
+        input:checked{
+            counter-increment: score;
+        }
+        .total-count::after{
+            content: counter(score);
+        }
+        .layer-2{ /*Fondo del 2do muneco*/
+            z-index: 2;
+            height: 0;
+            width: 80px;
+            background: papayawhip;
+            top: 100px;
             left: 60px;
             border-top-left-radius: 40px;
             border-top-right-radius: 40px;
             box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
+            animation-name: layer;
+            animation-duration: .7s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
         }
-        .layer-3{
+        .layer-3{/*Tierra alta*/
             z-index: 3;
             left: 0;
             right: 0;
             margin: 0 auto;
             width: 220px;
             height: 400px;
-            background: #ba6d4f;
+            background: #7e4f3d;
             bottom: 0;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
             box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
             
         }
-        .sub-layer3
+        .sub-layer3 /*Pasto alto*/
         {
             z-index: 3;
             left: 0;
@@ -70,95 +125,134 @@
             margin: 0 auto;
             width: 220px;
             height: 20px;
-            background: green;
+            background: #bcb538;
             bottom: 0;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
         }
-        .layer-4{
+        .zigzag{
+            width: auto;
+            height: 15px;
+            background: linear-gradient(135deg, #bcb538 25%, transparent 25%) -50px 0,
+        linear-gradient(-135deg, #bcb538 25%, transparent 25%) -50px 0,
+        linear-gradient(45deg, #bcb538 25%, transparent 25%),
+        linear-gradient(-45deg, #bcb538 25%, transparent 25%);
+    background-size: 30px 30px;
+        }
+        .layer-4{/*Muneco en medio*/
             z-index: 4;
-            height: 340px;
+            height: 0;
             width: 80px;
-            background: white;
-            bottom: 10px;
+            background: papayawhip;
+            top: 240px;
             left: 20px;
             border-top-left-radius: 40px;
             border-top-right-radius: 40px;
             box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
+            animation-name: panda;
+            animation-duration: 0.5s;
+            animation-timing-function: cubic-bezier(.3,.25,.27,.71);
+            animation-iteration-count: infinite;
         }
-        .layer-5{
+        @keyframes panda{
+            0%{
+                top: 240px;
+            }
+            25%{
+                top: 310px;
+            }
+            100%{
+                top: 240px;
+            }
+        }
+        .layer-5{ /*Tierra en medio*/
             z-index: 5;
             left: 0;
             margin: 0 auto;
             width: 180px;
             height: 300px;
-            background: #ba6d4f;
+            background: #7e4f3d;
             bottom: 0;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
             border-bottom-left-radius: 32px;
             box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
         }
-        .sub-layer5{
+        .sub-layer5{/*Pasto en medio*/
             z-index: 5;
             left: 0;
             margin: 0 auto;
             width: 180px;
             height: 20px;
-            background: green;
+            background: #bcb538;
             bottom: 0;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
         }
-        .layer-6{
+        .layer-6{/*Ultimo muneco*/
             z-index: 6;
-            height: 240px;
+            height: 0;
             width: 80px;
-            background: white;
-            bottom: 10px;
+            background: papayawhip;
+            top: 340px;
             right: 20px;
             border-top-left-radius: 40px;
             border-top-right-radius: 40px;
             box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
+            animation-name: koala;
+            animation-duration: .7s;
+            animation-timing-function: ease-in;
+            animation-iteration-count: infinite;
         }
-        .layer-7{
+        @keyframes koala{
+            0%{
+                top: 340px;
+            }
+            25%{
+                top: 420px;
+            }
+            100%{
+                top: 340px;
+            }
+        }
+        .layer-7{/*Ultima tierra*/
             z-index: 7;
             right: 0;
             margin: 0 auto;
             width: 220px;
             height: 200px;
-            background: #ba6d4f;
+            background: #7e4f3d;
             bottom: 0;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
             border-bottom-right-radius: 32px;
             box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
         }
-        .sub-layer7{
+        .sub-layer7{/*Ultimo pasto*/
             z-index: 7;
             left: 0;
             margin: 0 auto;
             width: 220px;
             height: 20px;
-            background: green;
+            background: #bcb538;
             bottom: 0;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
         }
-        .layer-8{
+        .layer-8{/*Puerta*/
             z-index: 8;
-            width: 80px;
-            height: 180px;
-            background: darkgreen;
+            width: 180px;
+            height: 160px;
+            background: #286979;
             bottom: 0;
             margin: 0 auto;
             left: 0;
             right: 0;
-            border-top-left-radius: 100px;
-            border-top-right-radius: 100px;
+            border-top-left-radius: 80px;
+            border-top-right-radius: 80px;
             box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
         }
-        .layer-9{
+         /* .layer-9{ pasto izquierdo
             z-index: 9;
             background: darkgreen;
             left: 50px;
@@ -168,8 +262,8 @@
             border-top-left-radius: 100px;
             border-top-right-radius: 100px;
             box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
-        }
-        .layer-10{
+        }  */
+        /* .layer-10{ pasto derecho
             z-index: 10;
             background: darkgreen;
             right: 50px;
@@ -179,8 +273,8 @@
             border-top-left-radius: 100px;
             border-top-right-radius: 100px;
             box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
-        }
-        .layer-11{
+        }  */
+        .layer-11{/*nube*/
             z-index: 11;
             background:white;
             bottom: 0;
@@ -190,28 +284,334 @@
             border-top-right-radius: 100px; 
             box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
         }
+        .left-ear--outer{
+            background: white;
+            border-radius: 50%;
+            width: 13px;
+            height: 18px;
+            position: absolute;
+            left: 10px;
+            border: .5px solid black;
+            top: 15px;
+        }
+        .right-ear--outer{
+            background: white;
+            border-radius: 50%;
+            width: 13px;
+            height: 18px;
+            position: absolute;
+            right: 10px;
+            border: .5px solid black;
+            top: 14px;
+        }
+        .head{
+            background: white;
+            border: .5px solid black;
+            border-radius: 45%;
+            height: 100px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            position: absolute;
+            top: 15px;
+            width: 95%;
+        }
+        .head__eye {
+            background: black;
+            border-radius: 50%;
+            width: 4.5px;
+            height: 4.5px;
+            position: absolute;
+            top: 15px;
+            animation-name: blink;
+            animation-duration: 1.7s;
+            animation-iteration-count: infinite; 
+        }
+        @keyframes blink{
+            0%{
+                transform: scale(1,1);
+            }
+            5%{
+                transform: scale(1, 0.2); 
+            }
+            10%{
+                transform: scale(1, 1); 
+            }
+        }
+        .head__eye--left{
+            left: 27px;
+        }
+        .head__eye--right{
+            right: 27px;
+        }
+        .nose
+        {
+            background: black;
+            border-radius: 50%;
+            width: 18px;
+            height: 5px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            bottom: 70px;
+        }
+        .pardo__right-ear {
+            background: #a57453;
+        }
+        .pardo__left-ear{
+        background:#a57453;
+        }
+        .pardo-head{
+            background: #a57453;
+        }
+        .panda__left-ear{
+            background: #585453;
+        }
+        .panda__right-ear{
+            background: #585453;
+        }
+        .panda-body{
+            background: #585453;
+            border: .5px solid black;
+            border-radius: 4%;
+            height: 100px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            position: absolute;
+            top: 30px;
+            width: 95%;
+        }
+        .panda-eyelid{
+            background: #585453;
+            border-radius: 50%;
+            width: 15px;
+            height: 13px;
+            position: absolute;
+            top: 15px;
+        }
+        .eyelid-left{
+            left: 22px;
+            top: 10px;
+        }
+        .eyelid-right{
+            right: 22px;
+            top: 10px;
+        }
+        .koala__left-ear{
+            background: #b5c0c1;
+            height: 40px;
+            width: 40px;
+            top: 0px;
+            left: 0;
+        }
+        .koala__right-ear{
+            background: #b5c0c1;
+            height: 40px;
+            width: 40px;
+            top: 0px;
+            right: 0;
+        }
+        .koala-head{
+            background: #b5c0c1;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            top: 10px;
+        }
+        .koala-middle_eye-left {
+            left: 15px;
+            top: 15px;
+        }
+        .koala-middle_eye-right{
+            right: 15px;
+            top: 15px;
+        }
+        .koala-eye{
+            background-color: white;
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            top: 15px;
+            animation-name: koala-blink;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes koala-blink{
+            0%{
+                transform: scale(1,1);
+            }
+            5%{
+                transform: scale(1, 0.2); 
+            }
+            10%{
+                transform: scale(1, 1); 
+            }
+        }
+        .koala-eye__right{
+            left: 25px;
+            top: 10px;
+        }
+        .koala-eye__left{
+            right: 25px;
+            top: 10px;
+        }
+        .koala-nose{
+            top: 25px;
+            width: 13px;
+            height: 15px;
+        }
+        .window
+        {
+            position: absolute;
+            top: 20px;
+            height: 60px;
+            width: 60px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            background: #9bafb0;
+            border-radius: 50%;
+            box-shadow: 1px 1px 10px rgba(.1, .1, .1, .1);
+        }
+        .gate1{
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: #286979;
+            top: 28px;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
+        }
+        .gate2{
+            position: absolute;
+            height: 100%;
+            width: 4px;
+            background: #286979;
+            left: 28px;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
+        }
+        /* .foca-body{
+            position: absolute;
+            left: 1px;
+            bottom: 3px;
+            width: 120px;
+            height: 60px;
+            background: #bebdc0;
+            border-left: 1px solid black;
+            border-bottom: 1px solid black;
+            border-top: 1px solid black;
+            border-bottom-left-radius: 100%;
+            border-top-left-radius: 100%;
+            border-top-right-radius: 40%;
+            border-bottom-right-radius: 40%;
+        }
+        .foca-head{
+            position: absolute;
+            left: 95px;
+            bottom: 10px;
+            border-radius: 50%;
+            width: 53px;
+            height: 40px;
+            background: #bebdc0;
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
+            border-top: 1px solid black;
+        }
+        .foca-arm{
+            position: absolute;
+            left: 50px;
+            bottom: 1px;
+            border-radius: 50%;
+            width: 60px;
+            height: 15px;
+            background: #bebdc0;
+            border: 1px solid black;
+        } */
     </style>
 </head>
 <body>
     <div class="phone">
-        <div class=" layer layer-1"></div>
-        <div class=" layer layer-2"></div>
+        <h1>¡Escandalosos!</h1>
+        <div class=" layer layer-1">
+            <input type="checkbox">
+            <div class="left-ear--outer"></div>
+            <div class="left-ear--inner"></div>
+            <div class="right-ear--outer"></div>
+            <div class="right-ear--inner"></div>
+            <div class="head">
+                <div class="head__eye head__eye--left"></div>
+                <div class="head__eye head__eye--right"></div>
+                <div class="nose"></div>
+                <div class="mouth"></div>
+            </div>
+        </div>
+        <div class=" layer layer-2">
+            <input type="checkbox">
+            <div class="left-ear--outer pardo__left-ear"></div>
+            <div class="right-ear--outer pardo__right-ear"></div>
+            <div class="head pardo-head">
+                <div class="head__eye head__eye--left"></div>
+                <div class="head__eye head__eye--right"></div>
+                <div class="nose"></div>
+                <div class="mouth"></div>
+            </div>
+        </div>
         <div class=" layer layer-3">
             <div class="sub-layer3"></div>
+            <div class="zigzag"></div>
         </div>
-        <div class=" layer layer-4"></div>
+        <div class=" layer layer-4">
+            <input type="checkbox">
+            <div class="left-ear--outer panda__left-ear"></div>
+            <div class="right-ear--outer panda__right-ear"></div>
+            <div class="head">
+                <div class="panda-body"></div>
+                <div class="panda-eyelid eyelid-left"></div>
+                <div class="panda-eyelid eyelid-right"></div>
+                <div class="head__eye head__eye--left"></div>
+                <div class="head__eye head__eye--right"></div>
+                <div class="nose"></div>
+                <div class="mouth"></div>
+            </div>
+        </div>
         <div class=" layer layer-5">
             <div class="sub-layer5"></div>
+            <div class="zigzag"></div>
         </div>
-        <div class=" layer layer-6"></div>
+        <div class=" layer layer-6">
+            <input type="checkbox">
+            <div class="left-ear--outer koala__left-ear"></div>
+            <div class="right-ear--outer koala__right-ear"></div>
+            <div class="head koala-head">
+                <div class="koala-eye koala-eye__left"></div>
+                <div class="koala-eye koala-eye__right"></div>
+                <div class="head__eye koala-middle_eye-left head__eye--left"></div>
+                <div class="head__eye koala-middle_eye-right head__eye--right"></div>
+                <div class="nose koala-nose"></div>
+                <div class="mouth"></div>
+            </div>
+        </div>
         <div class=" layer layer-7">
             <div class="sub-layer7"></div>
+            <div class="zigzag"></div>
         </div>
-        <div class=" layer layer-8"></div>
+        <div class=" layer layer-8">
+            <div class="window">
+                <div class="gate1"></div>
+                <div class="gate2"></div>
+            </div>
+        </div>
         <div class=" layer layer-9"></div>
         <div class=" layer layer-10"></div>
-        <div class=" layer layer-11"></div>
+        <div class=" layer layer-11">
+            <div class="foca-body"></div>
+            <div class="foca-head"></div>
+            <div class="foca-arm"></div>
+        </div>
         <div class=" layer layer-12"></div>
+        <h3 class=" score total-count">Score: </h3>
     </div>
 </body>
 </html>
